@@ -1,14 +1,15 @@
 package domain
 
-import "time"
+import (
+	"time"
+)
 
-// ReadBook represents a record of a book being read by a user.
 type ReadBook struct {
-	ID              string    `json:"id"`
-	BookID          string    `json:"book_id"`
-	StartDate       time.Time `json:"start_date"`
-	ExpectedEndDate time.Time `json:"expected_end_date"`
-	ActualEndDate   time.Time `json:"actual_end_date"`
-	Comments        string    `json:"comments"`
-	Rating          int       `json:"rating"`
+	ID              string     `json:"id,omitempty"`
+	BookID          string     `json:"book_id" validate:"required"`
+	StartDate       time.Time  `json:"start_date" validate:"required"`
+	ExpectedEndDate time.Time  `json:"expected_end_date"`
+	ActualEndDate   *time.Time `json:"actual_end_date,omitempty"`
+	Comments        []string   `json:"comments,omitempty"`
+	Rating          *int       `json:"rating,omitempty"`
 }

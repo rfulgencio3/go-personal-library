@@ -11,4 +11,5 @@ type ReadBookRepository interface {
 	Update(readBook *domain.ReadBook) error
 	Delete(id string) error
 	GetAll() ([]*domain.ReadBook, error)
+	AddComment(id string, comment string) error
 }

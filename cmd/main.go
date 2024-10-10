@@ -20,9 +20,9 @@ import (
 // @version 1.0
 // @description API for managing personal library of books.
 
-// @contact.name Seu Nome
-// @contact.url http://www.seusite.com
-// @contact.email seu.email@exemplo.com
+// @contact.name Ricardo Fulgencio
+// @contact.url https://github.com/rfulgencio3
+// @contact.email rfulgencio3@gmail.com
 
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
@@ -49,10 +49,15 @@ func main() {
 	bookUseCase := usecase.NewBookUseCase(bookRepo)
 	bookHandler := handler.NewBookHandler(bookUseCase)
 
+	readBookRepo := mongodb.NewReadBookRepository(client, config)
+	readBookUC := usecase.NewReadBookUseCase(readBookRepo)
+	readBookHandler := handler.NewReadBookHandler(readBookUC)
+
 	// Configurar Rotas
 	router := mux.NewRouter()
 	router.Use(middleware.LoggingMiddleware)
 	bookHandler.RegisterRoutes(router)
+	readBookHandler.RegisterRoutes(router)
 
 	// Registrar o handler do Swagger
 	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
