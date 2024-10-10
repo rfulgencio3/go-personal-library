@@ -31,11 +31,12 @@ cd go-personal-library
 ### 2. Set Up Environment Variables
 
 Create a .env file in the root directory of the project with the following content:
-
+```
 SERVER_PORT=8080
 MONGO_URI=mongodb://localhost:27017
 MONGO_DATABASE=personal_library
 MONGO_COLLECTION=books
+```
 
 ### 3. Install Dependencies
 
